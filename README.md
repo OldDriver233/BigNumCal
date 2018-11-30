@@ -1,2 +1,0 @@
-# BigNumCal
-Big num.
