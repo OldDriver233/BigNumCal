@@ -1,5 +1,6 @@
 #include<string>
 #include<vector>
+#include<list>
 class bnum{
     private:
         std::vector<short> beforeDot,afterDot;
@@ -18,13 +19,8 @@ class bnum{
     bnum operator/(bnum& a);
 };
 
-bnum atoi(std::string str)
-{
-    bnum a;
-    return a;
-}
-
 bnum::bnum()
 {
     withDot=false;
 }
+
