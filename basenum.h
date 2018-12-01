@@ -28,3 +28,7 @@ bnum::bnum()
     withDot=false;
 }
 
+inline int maxnum(unsigned long long x,unsigned long long y)
+{
+  return x>y?x:y;
+}
