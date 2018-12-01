@@ -5,13 +5,17 @@ class bnum{
         std::vector<short> beforeDot,afterDot;
         bool withDot;
     public:
+    static int prec;
     bnum();
     bnum(std::string s);
-    bool operator==(bnum& a)
-    {
-        if(afterDot.size()!=a.afterDot.size())return false;
-        else if(beforeDot.size()!=a.beforeDot.size())return false;
-    }
+    bnum(double d);
+    bool operator==(bnum& a);
+    bool operator<(bnum& a);
+    bool operator>(bnum& a);
+    bnum operator+(bnum& a);
+    bnum operator-(bnum& a);
+    bnum operator*(bnum& a);
+    bnum operator/(bnum& a);
 };
 
 bnum atoi(std::string str)
