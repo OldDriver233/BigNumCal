@@ -17,6 +17,10 @@ class bnum{
     bnum operator-(bnum& a);
     bnum operator*(bnum& a);
     bnum operator/(bnum& a);
+    bnum operator+(long long& a);
+    bnum operator-(long long& a);
+    bnum operator*(long long& a);
+    bnum operator/(long long& a);
 };
 
 bnum::bnum()
