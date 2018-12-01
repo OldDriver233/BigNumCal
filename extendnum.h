@@ -17,3 +17,27 @@ bnum bnum::operator+(bnum &a)
     }
     return rt;
 }
+
+bnum bnum::operator+=(bnum& a)
+{
+    return *this+a;
+}
+
+bnum bnum::operator-(bnum &a)
+{
+    bnum rt;
+    short lender=0;
+    unsigned long long ts=this->beforeDot.size(), as=a.beforeDot.size();
+	for(int i=0;i<maxnum(ts,as);i++)
+	{
+		rt.beforeDot[i]=this->beforeDot[i]+a.beforeDot[i]-lender;
+        lender=(rt.beforeDot[i]<0?1:0);
+        rt.beforeDot[i]=rt.beforeDot[i]+10;
+    }
+    return rt;
+}
+
+bnum bnum::operator-=(bnum& a)
+{
+    return *this-a;
+}

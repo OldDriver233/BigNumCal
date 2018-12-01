@@ -1,7 +1,8 @@
 #include<iostream>
-using namespace std;
+#include"extendnum.h"
 
 int main()
 {
+    
     return 0;
 }
