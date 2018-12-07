@@ -6,6 +6,9 @@ bnum bnum::operator+(bnum &a)
     bnum rt;
     short adder=0;
     unsigned long long ts=this->beforeDot.size(), as=a.beforeDot.size();
+    rt.beforeDot.resize(maxnum(ts,as)+3);
+    this->beforeDot.resize(maxnum(ts,as)+3);
+    a.beforeDot.resize(maxnum(ts,as)+3);
 	for(int i=0;i<maxnum(ts,as);i++)
 	{
 		rt.beforeDot[i]=this->beforeDot[i]+a.beforeDot[i]+adder;
@@ -23,6 +26,8 @@ void bnum::operator+=(bnum& a)
 {
     short adder=0;
     unsigned long long ts=this->beforeDot.size(), as=a.beforeDot.size();
+    this->beforeDot.resize(maxnum(ts,as)+3);
+    a.beforeDot.resize(maxnum(ts,as)+3);
 	for(int i=0;i<maxnum(ts,as);i++)
 	{
 		this->beforeDot[i]=this->beforeDot[i]+a.beforeDot[i]+adder;
@@ -40,6 +45,9 @@ bnum bnum::operator-(bnum &a)
     bnum rt;
     short lender=0;
     unsigned long long ts=this->beforeDot.size(), as=a.beforeDot.size();
+    rt.beforeDot.resize(maxnum(ts,as)+3);
+    this->beforeDot.resize(maxnum(ts,as)+3);
+    a.beforeDot.resize(maxnum(ts,as)+3);
 	for(int i=0;i<maxnum(ts,as);i++)
 	{
 		rt.beforeDot[i]=this->beforeDot[i]-a.beforeDot[i]-lender;
@@ -53,6 +61,8 @@ void bnum::operator-=(bnum& a)
 {
     short lender=0;
     unsigned long long ts=this->beforeDot.size(), as=a.beforeDot.size();
+    this->beforeDot.resize(maxnum(ts,as)+3);
+    a.beforeDot.resize(maxnum(ts,as)+3);
 	for(int i=0;i<maxnum(ts,as);i++)
 	{
 		this->beforeDot[i]=this->beforeDot[i]-a.beforeDot[i]-lender;
