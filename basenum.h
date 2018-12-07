@@ -2,6 +2,7 @@
 #include<vector>
 #include<list>
 class bnum{
+    friend void test();
     private:
         std::vector<short> beforeDot,afterDot;
         bool withDot;
@@ -17,10 +18,10 @@ class bnum{
     bnum operator-(bnum& a);
     bnum operator*(bnum& a);
     bnum operator/(bnum& a);
-    bnum operator+=(bnum& a);
-    bnum operator-=(bnum& a);
-    bnum operator*=(bnum& a);
-    bnum operator/=(bnum& a);
+    void operator+=(bnum& a);
+    void operator-=(bnum& a);
+    void operator*=(bnum& a);
+    void operator/=(bnum& a);
     bnum operator+(long long& a);
     bnum operator-(long long& a);
     bnum operator*(long long& a);
@@ -30,6 +31,7 @@ class bnum{
 bnum::bnum()
 {
     withDot=false;
+    this->beforeDot.resize(30);
 }
 
 inline int maxnum(unsigned long long x,unsigned long long y)
