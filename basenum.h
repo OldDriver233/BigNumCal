@@ -24,13 +24,18 @@ class bnum{
     void operator-=(bnum& a);
     void operator*=(bnum& a);
     void operator/=(bnum& a);
-	void operator=(bnum a);
+    void operator=(bnum a);
 };
 
 bnum::bnum()
 {
     withDot=false;
     this->beforeDot.resize(30);
+}
+
+bnum::bnum(std::string s)
+{
+    *this=stob(s);
 }
 
 inline int maxnum(unsigned long long x,unsigned long long y)
