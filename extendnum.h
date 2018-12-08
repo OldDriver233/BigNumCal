@@ -1,6 +1,15 @@
 #include<iostream>
 #include"basenum.h"
 
+void bnum::operator=(bnum a)
+{
+	this->beforeDot.resize(a.beforeDot.capacity());
+	this->beforeDot=a.beforeDot;
+	this->afterDot.resize(a.afterDot.capacity());
+	this->afterDot=a.afterDot;
+	this->withDot=a.withDot;
+}
+
 bnum bnum::operator+(bnum &a)
 {
     bnum rt;
@@ -24,20 +33,8 @@ bnum bnum::operator+(bnum &a)
 
 void bnum::operator+=(bnum& a)
 {
-    short adder=0;
-    unsigned long long ts=this->beforeDot.size(), as=a.beforeDot.size();
-    this->beforeDot.resize(maxnum(ts,as)+3);
-    a.beforeDot.resize(maxnum(ts,as)+3);
-	for(int i=0;i<maxnum(ts,as);i++)
-	{
-		this->beforeDot[i]=this->beforeDot[i]+a.beforeDot[i]+adder;
-        adder=this->beforeDot[i]/10;
-        this->beforeDot[i]=this->beforeDot[i]%10;
-    }
-    if(adder!=0)
-    {
-        this->beforeDot[maxnum(ts,as)]=this->beforeDot[maxnum(ts,as)]%10;
-    }
+	*this=(*this+a);
+	return;
 }
 
 bnum bnum::operator-(bnum &a)
@@ -52,21 +49,39 @@ bnum bnum::operator-(bnum &a)
 	{
 		rt.beforeDot[i]=this->beforeDot[i]-a.beforeDot[i]-lender;
         lender=(rt.beforeDot[i]<0?1:0);
-        rt.beforeDot[i]=rt.beforeDot[i]+10;
+        if(rt.beforeDot[i]<0)rt.beforeDot[i]=rt.beforeDot[i]+10;
     }
     return rt;
 }
 
 void bnum::operator-=(bnum& a)
 {
-    short lender=0;
-    unsigned long long ts=this->beforeDot.size(), as=a.beforeDot.size();
+	*this=(*this-a);
+	return;
+}
+
+bnum bnum::operator*(bnum& a)
+{
+	bnum rt;
+	short adder=0;
+	unsigned long long ts=this->beforeDot.size(), as=a.beforeDot.size();
+	rt.beforeDot.resize(ts+as+3);
     this->beforeDot.resize(maxnum(ts,as)+3);
     a.beforeDot.resize(maxnum(ts,as)+3);
-	for(int i=0;i<maxnum(ts,as);i++)
+	for(int i=0;i<ts;i++)
 	{
-		this->beforeDot[i]=this->beforeDot[i]-a.beforeDot[i]-lender;
-        lender=(this->beforeDot[i]<0?1:0);
-        if(this->beforeDot[i]<0) this->beforeDot[i]=this->beforeDot[i]+10;
-    }
+		for(int j=0;j<as;j++)
+		{
+			rt.beforeDot[i+j]=this->beforeDot[i]*a.beforeDot[j]+adder;
+			adder=rt.beforeDot[i+j]/10;
+			rt.beforeDot[i+j]=rt.beforeDot[i+j]%=10;
+		}
+		if(adder!=0)
+		{
+			rt.beforeDot[i+as]+=adder;
+			adder=0;
+		}
+	}
+	return rt;
 }
+

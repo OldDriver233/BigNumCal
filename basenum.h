@@ -26,6 +26,7 @@ class bnum{
     bnum operator-(long long& a);
     bnum operator*(long long& a);
     bnum operator/(long long& a);
+	void operator=(bnum a);
 };
 
 bnum::bnum()
