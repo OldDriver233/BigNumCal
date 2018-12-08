@@ -3,6 +3,8 @@
 #include<list>
 class bnum{
     friend void test();
+    friend bnum stob(std::string s);
+    friend bnum itob(long long a);
     private:
         std::vector<short> beforeDot,afterDot;
         bool withDot;
@@ -22,10 +24,6 @@ class bnum{
     void operator-=(bnum& a);
     void operator*=(bnum& a);
     void operator/=(bnum& a);
-    bnum operator+(long long& a);
-    bnum operator-(long long& a);
-    bnum operator*(long long& a);
-    bnum operator/(long long& a);
 	void operator=(bnum a);
 };
 
