@@ -72,9 +72,9 @@ bnum bnum::operator*(bnum& a)
 	{
 		for(int j=0;j<as;j++)
 		{
-			rt.beforeDot[i+j]=this->beforeDot[i]*a.beforeDot[j]+adder;
+			rt.beforeDot[i+j]+=this->beforeDot[i]*a.beforeDot[j]+adder;
 			adder=rt.beforeDot[i+j]/10;
-			rt.beforeDot[i+j]=rt.beforeDot[i+j]%=10;
+			rt.beforeDot[i+j]%=10;
 		}
 		if(adder!=0)
 		{
@@ -85,3 +85,8 @@ bnum bnum::operator*(bnum& a)
 	return rt;
 }
 
+void bnum::operator*=(bnum& a)
+{
+	*this=((*this)*a);
+	return;
+}
