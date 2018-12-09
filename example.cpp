@@ -1,5 +1,5 @@
 #include<iostream>
-#include"extendnum.h"
+#include"bignum"
 
 void test()
 {
