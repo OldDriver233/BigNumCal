@@ -25,3 +25,9 @@ bnum itob(long long a)
     }
     return rt;
 }
+
+
+bnum::bnum(std::string s)
+{
+    *this=stob(s);
+}
