@@ -1,3 +1,5 @@
 /.vscode
 *.out
 *.txt
+
+\.DS_Store
