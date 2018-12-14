@@ -52,12 +52,28 @@ bool bnum::operator==(bnum &a)
 
 bool bnum::operator<(bnum &a)
 {
-    return (this->beforeDot<a.beforeDot);
+    unsigned long long ts=this->beforeDot.size,as=a.beforeDot.size;
+    this->beforeDot.resize(maxnum(ts,as));
+    a.beforeDot.resize(maxnum(ts,as));
+    for(int i=maxnum(this->beforeDot.size,a.beforeDot.size)-1;i>=0;i--)
+    {
+        if(this->beforeDot[i]<a.beforeDot[i])return true;
+        else if(this->beforeDot[i]>a.beforeDot[i])return false;
+    }
+    return false;
 }
 
 bool bnum::operator>(bnum &a)
 {
-    return (this->beforeDot>a.beforeDot);
+    unsigned long long ts=this->beforeDot.size,as=a.beforeDot.size;
+    this->beforeDot.resize(maxnum(ts,as));
+    a.beforeDot.resize(maxnum(ts,as));
+    for(int i=maxnum(this->beforeDot.size,a.beforeDot.size)-1;i>=0;i--)
+    {
+        if(this->beforeDot[i]>a.beforeDot[i])return true;
+        else if(this->beforeDot[i]<a.beforeDot[i])return false;
+    }
+    return false;
 }
 
 #endif

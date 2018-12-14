@@ -90,3 +90,8 @@ void bnum::operator*=(bnum& a)
 	*this=((*this)*a);
 	return;
 }
+
+bnum bnum::operator/(bnum& a)
+{
+
+}
