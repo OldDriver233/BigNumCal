@@ -1,6 +1,8 @@
 #include<string>
 #include<vector>
 #include<list>
+#ifndef big_num
+#define big_num
 class bnum{
     friend void test();
     friend bnum stob(std::string s);
@@ -57,3 +59,5 @@ bool bnum::operator>(bnum &a)
 {
     return (this->beforeDot>a.beforeDot);
 }
+
+#endif
