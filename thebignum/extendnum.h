@@ -1,5 +1,6 @@
 #include<iostream>
 #include"basenum.h"
+#include"converter.h"
 
 void bnum::operator=(bnum a)
 {
@@ -10,7 +11,7 @@ void bnum::operator=(bnum a)
 	this->withDot=a.withDot;
 }
 
-bnum bnum::operator+(bnum &a)
+bnum bnum::operator+(bnum a)
 {
     bnum rt;
     short adder=0;
@@ -31,13 +32,13 @@ bnum bnum::operator+(bnum &a)
     return rt;
 }
 
-void bnum::operator+=(bnum& a)
+void bnum::operator+=(bnum a)
 {
 	*this=(*this+a);
 	return;
 }
 
-bnum bnum::operator-(bnum &a)
+bnum bnum::operator-(bnum a)
 {
     bnum rt;
     short lender=0;
@@ -54,13 +55,13 @@ bnum bnum::operator-(bnum &a)
     return rt;
 }
 
-void bnum::operator-=(bnum& a)
+void bnum::operator-=(bnum a)
 {
 	*this=(*this-a);
 	return;
 }
 
-bnum bnum::operator*(bnum& a)
+bnum bnum::operator*(bnum a)
 {
 	bnum rt;
 	short adder=0;
@@ -85,13 +86,22 @@ bnum bnum::operator*(bnum& a)
 	return rt;
 }
 
-void bnum::operator*=(bnum& a)
+void bnum::operator*=(bnum a)
 {
 	*this=((*this)*a);
 	return;
 }
 
-bnum bnum::operator/(bnum& a)
+bnum bnum::operator/(bnum a)
 {
-
+	bnum rt,rest;
+    unsigned long long ts=this->beforeDot.size(), as=a.beforeDot.size();
+    rt.beforeDot.resize(maxnum(ts,as)+3);
+    this->beforeDot.resize(maxnum(ts,as)+3);
+    a.beforeDot.resize(maxnum(ts,as)+3);
+	rest.beforeDot.resize(maxnum(ts,as)+3);
+	for(int i=ts-1;i>=0;i--)
+	{
+		rest=(rest*itob(10))+itob(this->beforeDot[i]);
+	}
 }

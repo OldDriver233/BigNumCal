@@ -16,19 +16,19 @@ class bnum{
         bnum(std::string s);
         bnum(double d);
 
-        bool operator==(bnum& a);
-        bool operator<(bnum& a);
-        bool operator>(bnum& a);
+        bool operator==(bnum a);
+        bool operator<(bnum a);
+        bool operator>(bnum a);
 
-        bnum operator+(bnum& a);
-        bnum operator-(bnum& a);
-        bnum operator*(bnum& a);
-        bnum operator/(bnum& a);
+        bnum operator+(bnum a);
+        bnum operator-(bnum a);
+        bnum operator*(bnum a);
+        bnum operator/(bnum a);
 
-        void operator+=(bnum& a);
-        void operator-=(bnum& a);
-        void operator*=(bnum& a);
-        void operator/=(bnum& a);
+        void operator+=(bnum a);
+        void operator-=(bnum a);
+        void operator*=(bnum a);
+        void operator/=(bnum a);
 
         void operator=(bnum a);
 };
@@ -44,18 +44,18 @@ inline int maxnum(unsigned long long x,unsigned long long y)
   return x>y?x:y;
 }
 
-bool bnum::operator==(bnum &a)
+bool bnum::operator==(bnum a)
 {
     if(this->beforeDot!=a.beforeDot)return false;
     else return true;
 }
 
-bool bnum::operator<(bnum &a)
+bool bnum::operator<(bnum a)
 {
-    unsigned long long ts=this->beforeDot.size,as=a.beforeDot.size;
+    unsigned long long ts=this->beforeDot.size(),as=a.beforeDot.size();
     this->beforeDot.resize(maxnum(ts,as));
     a.beforeDot.resize(maxnum(ts,as));
-    for(int i=maxnum(this->beforeDot.size,a.beforeDot.size)-1;i>=0;i--)
+    for(int i=maxnum(this->beforeDot.size(),a.beforeDot.size())-1;i>=0;i--)
     {
         if(this->beforeDot[i]<a.beforeDot[i])return true;
         else if(this->beforeDot[i]>a.beforeDot[i])return false;
@@ -63,12 +63,12 @@ bool bnum::operator<(bnum &a)
     return false;
 }
 
-bool bnum::operator>(bnum &a)
+bool bnum::operator>(bnum a)
 {
-    unsigned long long ts=this->beforeDot.size,as=a.beforeDot.size;
+    unsigned long long ts=this->beforeDot.size(),as=a.beforeDot.size();
     this->beforeDot.resize(maxnum(ts,as));
     a.beforeDot.resize(maxnum(ts,as));
-    for(int i=maxnum(this->beforeDot.size,a.beforeDot.size)-1;i>=0;i--)
+    for(int i=maxnum(this->beforeDot.size(),a.beforeDot.size())-1;i>=0;i--)
     {
         if(this->beforeDot[i]>a.beforeDot[i])return true;
         else if(this->beforeDot[i]<a.beforeDot[i])return false;

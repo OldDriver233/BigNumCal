@@ -2,6 +2,8 @@
 #include"basenum.h"
 using namespace std;
 
+#ifndef bignum2
+#define bignum2
 bnum stob(std::string s)
 {
     bnum rt;
@@ -31,3 +33,4 @@ bnum::bnum(std::string s)
 {
     *this=stob(s);
 }
+#endif
