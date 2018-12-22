@@ -97,11 +97,25 @@ bnum bnum::operator/(bnum a)
 	bnum rt,rest;
     unsigned long long ts=this->beforeDot.size(), as=a.beforeDot.size();
     rt.beforeDot.resize(maxnum(ts,as)+3);
-    this->beforeDot.resize(maxnum(ts,as)+3);
-    a.beforeDot.resize(maxnum(ts,as)+3);
-	rest.beforeDot.resize(maxnum(ts,as)+3);
+	rest.beforeDot.resize(ts+3);
 	for(int i=ts-1;i>=0;i--)
 	{
-		rest=(rest*itob(10))+itob(this->beforeDot[i]);
+		for(int j=ts;j>0;j--)
+		{
+			rest.beforeDot[j]=rest.beforeDot[j-1];
+		}
+		rest.beforeDot[0]=this->beforeDot[i];
+		while(a<rest || a==rest)
+		{
+			rest-=a;
+			rt.beforeDot[i]++;
+		}
 	}
+	return rt;
+}
+
+void bnum::operator/=(bnum a)
+{
+	*this=((*this)/a);
+	return; 
 }

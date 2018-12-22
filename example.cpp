@@ -4,10 +4,9 @@
 void test()
 {
     bnum a,b;
-    std::cout<<a.beforeDot.capacity()<<std::endl;
-    a.beforeDot[0]=5;
-    b.beforeDot[0]=7;
-    b*=a;
+    a.beforeDot[0]=2;
+    b.beforeDot[0]=6;
+    b/=a;
     for(int i=0;i<b.beforeDot.size();i++)
     {
         std::cout<<b.beforeDot[i];
