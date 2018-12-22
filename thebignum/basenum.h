@@ -24,11 +24,13 @@ class bnum{
         bnum operator-(bnum a);
         bnum operator*(bnum a);
         bnum operator/(bnum a);
+        bnum operator%(bnum a);
 
         void operator+=(bnum a);
         void operator-=(bnum a);
         void operator*=(bnum a);
         void operator/=(bnum a);
+        void operator%=(bnum a);
 
         void operator=(bnum a);
 };

@@ -119,3 +119,29 @@ void bnum::operator/=(bnum a)
 	*this=((*this)/a);
 	return; 
 }
+
+bnum bnum::operator%(bnum a)
+{
+	bnum rest;
+    unsigned long long ts=this->beforeDot.size(), as=a.beforeDot.size();
+	rest.beforeDot.resize(ts+3);
+	for(int i=ts-1;i>=0;i--)
+	{
+		for(int j=ts;j>0;j--)
+		{
+			rest.beforeDot[j]=rest.beforeDot[j-1];
+		}
+		rest.beforeDot[0]=this->beforeDot[i];
+		while(a<rest || a==rest)
+		{
+			rest-=a;
+		}
+	}
+	return rest;
+}
+
+void bnum::operator%=(bnum a)
+{
+	*this=((*this)%a);
+	return; 
+}
