@@ -10,6 +10,7 @@ class bnum{
     private:
         std::vector<short> beforeDot,afterDot;
         bool withDot;
+        bool signer;
     public:
         static int prec;
         bnum();
@@ -38,6 +39,7 @@ class bnum{
 bnum::bnum()
 {
     withDot=false;
+    signer=false;
     this->beforeDot.resize(30);
 }
 
