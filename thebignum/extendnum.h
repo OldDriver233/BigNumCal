@@ -9,6 +9,8 @@ void bnum::operator=(bnum a)
 	this->afterDot.resize(a.afterDot.capacity());
 	this->afterDot=a.afterDot;
 	this->withDot=a.withDot;
+	this->signer=a.signer;
+	return;
 }
 
 bnum bnum::operator+(bnum a)
