@@ -15,9 +15,21 @@ void bnum::operator=(bnum a)
 
 bnum bnum::operator+(bnum a)
 {
-    bnum rt;
+    bnum rt,copier;
     short adder=0;
     unsigned long long ts=this->beforeDot.size(), as=a.beforeDot.size();
+	copier=*this;
+	if(copier.signer==1 && a.signer==1)rt.signer=1;
+	else if(copier.signer==1 && a.signer==0)
+	{
+		copier.signer=0;
+		return a-copier;
+	}
+	else if(copier.signer==0 && a.signer==1)
+	{
+		a.signer=0;
+		return copier-a;
+	}
     rt.beforeDot.resize(maxnum(ts,as)+3);
     this->beforeDot.resize(maxnum(ts,as)+3);
     a.beforeDot.resize(maxnum(ts,as)+3);
@@ -42,9 +54,32 @@ void bnum::operator+=(bnum a)
 
 bnum bnum::operator-(bnum a)
 {
-    bnum rt;
+    bnum rt,copier;
     short lender=0;
     unsigned long long ts=this->beforeDot.size(), as=a.beforeDot.size();
+	copier=*this;
+	if(a.signer==0 && copier.signer==0)
+	{
+		if(signcmp(copier,a)==-1)rt.signer=1;
+	}
+	else if(a.signer==1 && copier.signer==1)
+	{
+		a.signer=0;
+		copier.signer=0;
+		return a-copier;
+	}
+	else if(a.signer==0 && copier.signer==1)
+	{
+		copier.signer=0;
+		rt=a+copier;
+		rt.signer=1;
+		return rt;
+	}
+	else
+	{
+		a.signer=0;
+		return a+copier;
+	}
     rt.beforeDot.resize(maxnum(ts,as)+3);
     this->beforeDot.resize(maxnum(ts,as)+3);
     a.beforeDot.resize(maxnum(ts,as)+3);
@@ -68,6 +103,7 @@ bnum bnum::operator*(bnum a)
 	bnum rt;
 	short adder=0;
 	unsigned long long ts=this->beforeDot.size(), as=a.beforeDot.size();
+	if(a.signer^this->signer)rt.signer=1;
 	rt.beforeDot.resize(ts+as+3);
     this->beforeDot.resize(maxnum(ts,as)+3);
     a.beforeDot.resize(maxnum(ts,as)+3);
@@ -98,6 +134,7 @@ bnum bnum::operator/(bnum a)
 {
 	bnum rt,rest;
     unsigned long long ts=this->beforeDot.size(), as=a.beforeDot.size();
+	if(a.signer^this->signer)rt.signer=1;
     rt.beforeDot.resize(maxnum(ts,as)+3);
 	rest.beforeDot.resize(ts+3);
 	for(int i=ts-1;i>=0;i--)
