@@ -60,19 +60,28 @@ bool bnum::operator==(bnum a)
 bool bnum::operator<(bnum a)
 {
     unsigned long long ts=this->beforeDot.size(),as=a.beforeDot.size();
+    bool rev,ans=false;
+    if(this->signer==1 && a.signer==0)return true;
+    else if(this->signer==0 && a.signer==1)return false;
+    else if(this->signer==1)rev=true;
     this->beforeDot.resize(maxnum(ts,as));
     a.beforeDot.resize(maxnum(ts,as));
     for(int i=maxnum(ts,as)-1;i>=0;i--)
     {
-        if(this->beforeDot[i]<a.beforeDot[i])return true;
-        else if(this->beforeDot[i]>a.beforeDot[i])return false;
+        if(this->beforeDot[i]<a.beforeDot[i])ans=true;
+        else if(this->beforeDot[i]>a.beforeDot[i])ans=false;
     }
-    return false;
+    if(rev)return !ans;
+    else return ans;
 }
 
 bool bnum::operator>(bnum a)
 {
     unsigned long long ts=this->beforeDot.size(),as=a.beforeDot.size();
+    bool rev,ans=false;
+    if(this->signer==1 && a.signer==0)return false;
+    else if(this->signer==0 && a.signer==1)return true;
+    else if(this->signer==1)rev=true;
     this->beforeDot.resize(maxnum(ts,as));
     a.beforeDot.resize(maxnum(ts,as));
     for(int i=maxnum(ts,as)-1;i>=0;i--)
@@ -80,7 +89,8 @@ bool bnum::operator>(bnum a)
         if(this->beforeDot[i]>a.beforeDot[i])return true;
         else if(this->beforeDot[i]<a.beforeDot[i])return false;
     }
-    return false;
+    if(rev)return !ans;
+    return ans;
 }
 
 
