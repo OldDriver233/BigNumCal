@@ -106,4 +106,18 @@ short signcmp(bnum a,bnum b)
     }
     return 0;
 }
+
+std::ostream& operator<<(std::ostream& os, bnum a)
+{
+    bool appear=false;
+    for(unsigned long long i=a.beforeDot.size();i>=0;i--)
+    {
+        if(a.beforeDot[i]!=0 || (a.beforeDot[i]==0 && appear))
+        {
+            os<<a.beforeDot[i];
+            appear=true;
+        }
+    }
+    return os;
+}
 #endif
