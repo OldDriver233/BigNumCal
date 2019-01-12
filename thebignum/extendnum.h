@@ -139,6 +139,7 @@ bnum bnum::operator/(bnum a)
 	if(a.signer^this->signer)rt.signer=1;
     rt.beforeDot.resize(maxnum(ts,as)+3);
 	rest.beforeDot.resize(ts+3);
+	if(a==itob(0))return a;
 	for(unsigned long i=ts-1;i>=0;i--)
 	{
 		for(unsigned long j=ts;j>0;j--)
@@ -166,6 +167,7 @@ bnum bnum::operator%(bnum a)
 	bnum rest;
     unsigned long long ts=this->beforeDot.size();
 	rest.beforeDot.resize(ts+3);
+	if(a==itob(0))return a;
 	for(unsigned long i=ts-1;i>=0;i--)
 	{
 		for(unsigned long j=ts;j>0;j--)
