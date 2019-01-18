@@ -42,7 +42,7 @@ bnum::bnum()
 {
     withDot=false;
     signer=false;
-    this->beforeDot.resize(30);
+    this->beforeDot.resize(10);
 }
 
 inline int maxnum(unsigned long long x,unsigned long long y)
