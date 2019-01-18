@@ -2,6 +2,8 @@
 #include"basenum.h"
 #include"converter.h"
 
+#ifndef big_num3
+#define big_num3
 void bnum::operator=(bnum a)
 {
 	this->beforeDot.resize(a.beforeDot.capacity());
@@ -33,7 +35,7 @@ bnum bnum::operator+(bnum a)
     rt.beforeDot.resize(maxnum(ts,as)+3);
     this->beforeDot.resize(maxnum(ts,as)+3);
     a.beforeDot.resize(maxnum(ts,as)+3);
-	for(int i=0;i<maxnum(ts,as);i++)
+	for(unsigned long i=0;i<maxnum(ts,as);i++)
 	{
 		rt.beforeDot[i]=this->beforeDot[i]+a.beforeDot[i]+adder;
         adder=rt.beforeDot[i]/10;
@@ -83,7 +85,7 @@ bnum bnum::operator-(bnum a)
     rt.beforeDot.resize(maxnum(ts,as)+3);
     this->beforeDot.resize(maxnum(ts,as)+3);
     a.beforeDot.resize(maxnum(ts,as)+3);
-	for(int i=0;i<maxnum(ts,as);i++)
+	for(unsigned long i=0;i<maxnum(ts,as);i++)
 	{
 		rt.beforeDot[i]=this->beforeDot[i]-a.beforeDot[i]-lender;
         lender=(rt.beforeDot[i]<0?1:0);
@@ -107,9 +109,9 @@ bnum bnum::operator*(bnum a)
 	rt.beforeDot.resize(ts+as+3);
     this->beforeDot.resize(maxnum(ts,as)+3);
     a.beforeDot.resize(maxnum(ts,as)+3);
-	for(int i=0;i<ts;i++)
+	for(unsigned long i=0;i<ts;i++)
 	{
-		for(int j=0;j<as;j++)
+		for(unsigned long j=0;j<as;j++)
 		{
 			rt.beforeDot[i+j]+=this->beforeDot[i]*a.beforeDot[j]+adder;
 			adder=rt.beforeDot[i+j]/10;
@@ -140,7 +142,7 @@ bnum bnum::operator/(bnum a)
 	if(a==itob(0))return a;
 	for(int i=ts-1;i>=0;i--)
 	{
-		for(int j=ts;j>0;j--)
+		for(unsigned long j=ts;j>0;j--)
 		{
 			rest.beforeDot[j]=rest.beforeDot[j-1];
 		}
@@ -163,12 +165,12 @@ void bnum::operator/=(bnum a)
 bnum bnum::operator%(bnum a)
 {
 	bnum rest;
-    unsigned long long ts=this->beforeDot.size(), as=a.beforeDot.size();
+    unsigned long long ts=this->beforeDot.size();
 	rest.beforeDot.resize(ts+3);
 	if(a==itob(0))return a;
 	for(int i=ts-1;i>=0;i--)
 	{
-		for(int j=ts;j>0;j--)
+		for(unsigned long j=ts;j>0;j--)
 		{
 			rest.beforeDot[j]=rest.beforeDot[j-1];
 		}
@@ -186,3 +188,4 @@ void bnum::operator%=(bnum a)
 	*this=((*this)%a);
 	return; 
 }
+#endif

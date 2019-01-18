@@ -1,8 +1,8 @@
 #include<string>
 #include<vector>
 #include<list>
-#ifndef big_num
-#define big_num
+#ifndef big_num1
+#define big_num1
 class bnum{
     friend void test();
     friend bnum stob(std::string s);
@@ -45,7 +45,7 @@ bnum::bnum()
     this->beforeDot.resize(10);
 }
 
-inline int maxnum(unsigned long long x,unsigned long long y)
+inline unsigned long long maxnum(unsigned long long x,unsigned long long y)
 {
   return x>y?x:y;
 }
@@ -66,7 +66,7 @@ bool bnum::operator<(bnum a)
     else if(this->signer==1)rev=true;
     this->beforeDot.resize(maxnum(ts,as));
     a.beforeDot.resize(maxnum(ts,as));
-    for(int i=maxnum(ts,as)-1;i>=0;i--)
+    for(unsigned long i=maxnum(ts,as)-1;i>=0;i--)
     {
         if(this->beforeDot[i]<a.beforeDot[i])ans=true;
         else if(this->beforeDot[i]>a.beforeDot[i])ans=false;
@@ -84,7 +84,7 @@ bool bnum::operator>(bnum a)
     else if(this->signer==1)rev=true;
     this->beforeDot.resize(maxnum(ts,as));
     a.beforeDot.resize(maxnum(ts,as));
-    for(int i=maxnum(ts,as)-1;i>=0;i--)
+    for(unsigned long i=maxnum(ts,as)-1;i>=0;i--)
     {
         if(this->beforeDot[i]>a.beforeDot[i])return true;
         else if(this->beforeDot[i]<a.beforeDot[i])return false;
@@ -99,7 +99,7 @@ short signcmp(bnum a,bnum b)
     unsigned long long as=a.beforeDot.size(),bs=b.beforeDot.size();
     a.beforeDot.resize(maxnum(as,bs));
     b.beforeDot.resize(maxnum(as,bs));
-    for(int i=maxnum(as,bs)-1;i>=0;i--)
+    for(unsigned long i=maxnum(as,bs)-1;i>=0;i--)
     {
         if(a.beforeDot[i]>b.beforeDot[i])return 1;
         else if(a.beforeDot[i]<b.beforeDot[i])return -1;

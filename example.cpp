@@ -7,7 +7,7 @@ void test()
     a.beforeDot[0]=2;
     b.beforeDot[0]=6;
     b/=a;
-    for(int i=0;i<b.beforeDot.size();i++)
+    for(unsigned long i=0;i<b.beforeDot.size();i++)
     {
         std::cout<<b.beforeDot[i];
     }
