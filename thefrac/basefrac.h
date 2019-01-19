@@ -28,3 +28,8 @@ class frac
         void operator=(frac a);
 };
 
+frac::frac()
+{
+
+}
+
