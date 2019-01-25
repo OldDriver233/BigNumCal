@@ -22,4 +22,9 @@ beforeDot(b.beforeDot),afterDot(b.afterDot),sign(b.sign)
     b.sign=false;
 }
 
+std::shared_ptr<bignum> signoreadd(const bignum &b)
+{
+    std::shared_ptr<bignum> p=std::make_shared<bignum>();
+    return p;
+}
 #endif
