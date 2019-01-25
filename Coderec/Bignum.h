@@ -58,6 +58,10 @@ std::shared_ptr<bignum> bignum::signoreadd(const bignum &b)
     }
     for(int i=std::min(this->beforeDot.size(),b.beforeDot.size())-1;i>=0-(std::min(this->afterDot.size(),b.afterDot.size()));i--)
     {
+        p->setpow10(i,this->getpow10(i)+b.getpow10(i));
+    }
+    for(int i=0-(std::min(this->afterDot.size(),b.afterDot.size()));i<=std::min(this->beforeDot.size(),b.beforeDot.size())-1;i++)
+    {
         
     }
     p->beforeDot.shrink_to_fit();
