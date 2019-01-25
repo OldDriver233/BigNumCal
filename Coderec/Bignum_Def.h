@@ -12,7 +12,8 @@ class bignum
     private:
         std::vector<short> beforeDot,afterDot;
         bool sign;
-        short getpow10(int index);
+        short getpow10(int index)const;
+        void setpow10(int index,short num);
         std::shared_ptr<bignum> signoreadd(const bignum &b);
         std::shared_ptr<bignum> signoremin(const bignum &b);
         std::shared_ptr<bignum> signoremul(const bignum &b);
